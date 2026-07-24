@@ -1,0 +1,222 @@
+openapi: 3.0.3
+info:
+  title: One Degree Resource Server Housing Locations API
+  description: The One Degree Resource Server API provides read access to a curated database of social-service community resources — organizations and the opportunities (programs/services) they offer, along with locations, phones, schedules, ratings, tags, comments, images, properties, guides, and housing properties. One Degree is a California 501(c)(3) nonprofit; the API supports interoperability with third-party services to improve coordination and delivery of social services. Data is licensed CC BY-NC 4.0. All requests require an api_key query parameter; write verbs (POST/PUT/DELETE) additionally require HMAC-SHA256 request signatures via the 1deg-Date and 1deg-Signature headers.
+  version: 1.0.0
+  contact:
+    name: One Degree
+    url: https://about.1degree.org/contact-us/
+  license:
+    name: CC BY-NC 4.0
+    url: https://creativecommons.org/licenses/by-nc/4.0/
+  x-api-evangelist-derived-from: https://github.com/1deg/resource-server-api-docs (Postman collection + docs)
+servers:
+- url: https://data.1degree.org/v1
+  description: Production
+security:
+- apiKeyAuth: []
+tags:
+- name: Locations
+  description: Physical locations, phones, and schedules.
+paths:
+  /organizations/{organization_id}/locations:
+    get:
+      operationId: getOrganizationLocations
+      summary: List organization locations
+      tags:
+      - Locations
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        description: The organization identifier (slug or numeric id).
+        schema:
+          type: string
+        example: compass-family-services
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/per_page'
+      - $ref: '#/components/parameters/titles_only'
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/locations/{location_id}/phones:
+    get:
+      operationId: getLocationPhones
+      summary: List location phones
+      tags:
+      - Locations
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        description: The organization identifier (slug or numeric id).
+        schema:
+          type: string
+        example: compass-family-services
+      - name: location_id
+        in: path
+        required: true
+        description: The location identifier.
+        schema:
+          type: string
+        example: '678'
+      - $ref: '#/components/parameters/page'
+      - $ref: '#/components/parameters/per_page'
+      - $ref: '#/components/parameters/titles_only'
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/locations/{location_id}/schedule:
+    get:
+      operationId: getLocationSchedule
+      summary: Get location schedule
+      tags:
+      - Locations
+      parameters:
+      - name: organization_id
+        in: path
+        required: true
+        description: The organization identifier (slug or numeric id).
+        schema:
+          type: string
+        example: compass-family-services
+      - name: location_id
+        in: path
+        required: true
+        description: The location identifier.
+        schema:
+          type: string
+        example: '678'
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  responses:
+    ServerError:
+      description: Internal Server Error — a problem occurred at the server.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Internal server error.
+    Forbidden:
+      description: Forbidden — the client is not allowed to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Forbidden.
+    Unauthorized:
+      description: Unauthorized — invalid API key or request signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Invalid API key or signature.
+    BadRequest:
+      description: Bad Request — something was wrong with the request, often a missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Missing API key.
+    NotFound:
+      description: Not Found — nothing at the requested endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Not found.
+  schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: string
+          example: Missing API key.
+  parameters:
+    per_page:
+      name: per_page
+      in: query
+      required: false
+      description: Number of items to return. Default is 10.
+      schema:
+        type: integer
+      example: 10
+    page:
+      name: page
+      in: query
+      required: false
+      description: The page offset. Default is 1.
+      schema:
+        type: integer
+      example: 3
+    titles_only:
+      name: titles_only
+      in: query
+      required: false
+      description: Return only titles/basic info instead of full resource objects.
+      schema:
+        type: boolean
+      example: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+      description: All requests require an api_key query parameter. Request a key at http://socialservicedata.org/api/get-key/
