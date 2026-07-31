@@ -1,0 +1,987 @@
+# generated: '2026-07-20'
+# method: derived
+# source: https://github.com/1deg/resource-server-api-docs
+openapi: 3.0.3
+info:
+  title: One Degree Resource Server API
+  description: The One Degree Resource Server API provides read access to a curated database of social-service
+    community resources — organizations and the opportunities (programs/services) they offer, along with
+    locations, phones, schedules, ratings, tags, comments, images, properties, guides, and housing properties.
+    One Degree is a California 501(c)(3) nonprofit; the API supports interoperability with third-party
+    services to improve coordination and delivery of social services. Data is licensed CC BY-NC 4.0. All
+    requests require an api_key query parameter; write verbs (POST/PUT/DELETE) additionally require HMAC-SHA256
+    request signatures via the 1deg-Date and 1deg-Signature headers.
+  version: 1.0.0
+  contact:
+    name: One Degree
+    url: https://about.1degree.org/contact-us/
+  license:
+    name: CC BY-NC 4.0
+    url: https://creativecommons.org/licenses/by-nc/4.0/
+  x-api-evangelist-derived-from: https://github.com/1deg/resource-server-api-docs (Postman collection
+    + docs)
+servers:
+- url: https://data.1degree.org/v1
+  description: Production
+security:
+- apiKeyAuth: []
+tags:
+- name: Organizations
+  description: Social-service organizations.
+- name: Opportunities
+  description: Programs/services offered by organizations.
+- name: Locations
+  description: Physical locations, phones, and schedules.
+- name: Housing
+  description: Housing properties.
+- name: Reference
+  description: Property types, rating types, and guides.
+- name: Submissions
+  description: Community submissions.
+paths:
+  /organizations:
+    get:
+      operationId: listOrganizations
+      summary: List and search organizations
+      description: Returns a collection of organizations. Supports pagination and query parameters.
+      tags:
+      - Organizations
+      parameters:
+      - &id002
+        $ref: '#/components/parameters/page'
+      - &id003
+        $ref: '#/components/parameters/per_page'
+      - &id004
+        $ref: '#/components/parameters/titles_only'
+      - &id006
+        $ref: '#/components/parameters/ids'
+      - &id007
+        $ref: '#/components/parameters/query_text'
+      - &id008
+        $ref: '#/components/parameters/query_tags'
+      - &id009
+        $ref: '#/components/parameters/query_lat'
+      - &id010
+        $ref: '#/components/parameters/query_long'
+      - &id011
+        $ref: '#/components/parameters/query_distance'
+      - &id012
+        $ref: '#/components/parameters/query_order'
+      - &id013
+        $ref: '#/components/parameters/query_match'
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}:
+    get:
+      operationId: getOrganization
+      summary: Get an organization
+      tags:
+      - Organizations
+      parameters:
+      - &id001
+        name: organization_id
+        in: path
+        required: true
+        description: The organization identifier (slug or numeric id).
+        schema:
+          type: string
+        example: compass-family-services
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/ratings:
+    get:
+      operationId: getOrganizationRatings
+      summary: List organization ratings
+      tags:
+      - Organizations
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/tags:
+    get:
+      operationId: getOrganizationTags
+      summary: List organization tags
+      tags:
+      - Organizations
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/comments:
+    get:
+      operationId: getOrganizationComments
+      summary: List organization comments
+      tags:
+      - Organizations
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/images:
+    get:
+      operationId: getOrganizationImages
+      summary: List organization images
+      tags:
+      - Organizations
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/phones:
+    get:
+      operationId: getOrganizationPhones
+      summary: List organization phones
+      tags:
+      - Organizations
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/properties:
+    get:
+      operationId: getOrganizationProperties
+      summary: List organization properties
+      tags:
+      - Organizations
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/locations:
+    get:
+      operationId: getOrganizationLocations
+      summary: List organization locations
+      tags:
+      - Locations
+      parameters:
+      - *id001
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/locations/{location_id}/phones:
+    get:
+      operationId: getLocationPhones
+      summary: List location phones
+      tags:
+      - Locations
+      parameters:
+      - *id001
+      - &id005
+        name: location_id
+        in: path
+        required: true
+        description: The location identifier.
+        schema:
+          type: string
+        example: '678'
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/locations/{location_id}/schedule:
+    get:
+      operationId: getLocationSchedule
+      summary: Get location schedule
+      tags:
+      - Locations
+      parameters:
+      - *id001
+      - *id005
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /opportunities:
+    get:
+      operationId: listOpportunities
+      summary: List and search opportunities
+      description: Returns a collection of opportunities (services/programs). Supports full-text, geo,
+        tag, and property search.
+      tags:
+      - Opportunities
+      parameters:
+      - *id002
+      - *id003
+      - *id004
+      - *id006
+      - *id007
+      - *id008
+      - *id009
+      - *id010
+      - *id011
+      - *id012
+      - *id013
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /opportunities/{opportunity_id}:
+    get:
+      operationId: getOpportunity
+      summary: Get an opportunity
+      tags:
+      - Opportunities
+      parameters:
+      - &id014
+        name: opportunity_id
+        in: path
+        required: true
+        description: The opportunity identifier (slug or numeric id).
+        schema:
+          type: string
+        example: get-emergency-shelter-for-homeless-families
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/opportunities/{opportunity_id}/access_instructions:
+    get:
+      operationId: getOpportunityAccessInstructions
+      summary: Get opportunity access instructions
+      tags:
+      - Opportunities
+      parameters:
+      - *id001
+      - *id014
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/opportunities/{opportunity_id}/comments:
+    get:
+      operationId: getOpportunityComments
+      summary: List opportunity comments
+      tags:
+      - Opportunities
+      parameters:
+      - *id001
+      - *id014
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/opportunities/{opportunity_id}/emails:
+    get:
+      operationId: getOpportunityEmails
+      summary: List opportunity emails
+      tags:
+      - Opportunities
+      parameters:
+      - *id001
+      - *id014
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/opportunities/{opportunity_id}/images:
+    get:
+      operationId: getOpportunityImages
+      summary: List opportunity images
+      tags:
+      - Opportunities
+      parameters:
+      - *id001
+      - *id014
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/opportunities/{opportunity_id}/phones:
+    get:
+      operationId: getOpportunityPhones
+      summary: List opportunity phones
+      tags:
+      - Opportunities
+      parameters:
+      - *id001
+      - *id014
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/opportunities/{opportunity_id}/properties:
+    get:
+      operationId: getOpportunityProperties
+      summary: List opportunity properties
+      tags:
+      - Opportunities
+      parameters:
+      - *id001
+      - *id014
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/opportunities/{opportunity_id}/ratings:
+    get:
+      operationId: getOpportunityRatings
+      summary: List opportunity ratings
+      tags:
+      - Opportunities
+      parameters:
+      - *id001
+      - *id014
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/opportunities/{opportunity_id}/schedule:
+    get:
+      operationId: getOpportunitySchedule
+      summary: Get opportunity schedule
+      tags:
+      - Opportunities
+      parameters:
+      - *id001
+      - *id014
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /organizations/{organization_id}/opportunities/{opportunity_id}/tags:
+    get:
+      operationId: getOpportunityTags
+      summary: List opportunity tags
+      tags:
+      - Opportunities
+      parameters:
+      - *id001
+      - *id014
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /property_types:
+    get:
+      operationId: listPropertyTypes
+      summary: List property types
+      tags:
+      - Reference
+      parameters: &id015
+      - *id002
+      - *id003
+      - *id004
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /rating_types:
+    get:
+      operationId: listRatingTypes
+      summary: List rating types
+      tags:
+      - Reference
+      parameters: *id015
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /guides:
+    get:
+      operationId: listGuides
+      summary: List guides
+      tags:
+      - Reference
+      parameters: *id015
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /submissions:
+    get:
+      operationId: listSubmissions
+      summary: List submissions
+      tags:
+      - Submissions
+      parameters: *id015
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+  /housing_properties:
+    get:
+      operationId: listHousingProperties
+      summary: List and search housing properties
+      tags:
+      - Housing
+      parameters:
+      - *id002
+      - *id003
+      - *id004
+      - *id006
+      - *id007
+      - *id008
+      - *id009
+      - *id010
+      - *id011
+      - *id012
+      - *id013
+      responses:
+        '200':
+          description: Successful response (JSON by default; append .xml for XML)
+          content:
+            application/json:
+              schema:
+                type: object
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/ServerError'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+      description: All requests require an api_key query parameter. Request a key at http://socialservicedata.org/api/get-key/
+  parameters:
+    page:
+      name: page
+      in: query
+      required: false
+      description: The page offset. Default is 1.
+      schema:
+        type: integer
+      example: 3
+    per_page:
+      name: per_page
+      in: query
+      required: false
+      description: Number of items to return. Default is 10.
+      schema:
+        type: integer
+      example: 10
+    titles_only:
+      name: titles_only
+      in: query
+      required: false
+      description: Return only titles/basic info instead of full resource objects.
+      schema:
+        type: boolean
+      example: true
+    ids:
+      name: ids
+      in: query
+      required: false
+      description: Comma-separated set of IDs whose records will be returned.
+      schema:
+        type: string
+      example: 3,49,2
+    query_text:
+      name: query[text]
+      in: query
+      required: false
+      description: Full-text search keywords. Surround in quotes for exact phrase.
+      schema:
+        type: string
+      example: health clinic
+    query_tags:
+      name: query[tags]
+      in: query
+      required: false
+      description: Classification tags associated with opportunities.
+      schema:
+        type: string
+      example: Childcare
+    query_lat:
+      name: query[lat]
+      in: query
+      required: false
+      description: Latitude around which to search.
+      schema:
+        type: number
+      example: 37.7823
+    query_long:
+      name: query[long]
+      in: query
+      required: false
+      description: Longitude around which to search.
+      schema:
+        type: number
+      example: -122.46
+    query_distance:
+      name: query[distance]
+      in: query
+      required: false
+      description: Radius in kilometers around the coordinates to search within.
+      schema:
+        type: number
+      example: 40.2336
+    query_order:
+      name: query[order]
+      in: query
+      required: false
+      description: Ordering of results (default scored by best match, distance and other factors).
+      schema:
+        type: string
+    query_match:
+      name: query[match]
+      in: query
+      required: false
+      description: 'Match logic: any, properties, or by_type.'
+      schema:
+        type: string
+      example: by_type
+  responses:
+    BadRequest:
+      description: Bad Request — something was wrong with the request, often a missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Missing API key.
+    Unauthorized:
+      description: Unauthorized — invalid API key or request signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Invalid API key or signature.
+    Forbidden:
+      description: Forbidden — the client is not allowed to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Forbidden.
+    NotFound:
+      description: Not Found — nothing at the requested endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Not found.
+    ServerError:
+      description: Internal Server Error — a problem occurred at the server.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Internal server error.
+  schemas:
+    Error:
+      type: object
+      properties:
+        status:
+          type: string
+          example: error
+        error:
+          type: string
+          example: Missing API key.

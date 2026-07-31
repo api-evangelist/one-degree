@@ -1,0 +1,8 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/one-degree-openapi.yml
+workflows:
+- file: one-degree-find-services.yml
+  workflowId: findNearbyService
+  title: One Degree — find and detail a nearby service
+  summary: Search opportunities by location, then load the top result's details.

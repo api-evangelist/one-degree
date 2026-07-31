@@ -1,0 +1,29 @@
+# One Degree
+
+> One Degree is a California 501(c)(3) nonprofit that helps low-income and underserved people find and access life-changing benefits and social services. Its Resource Server API exposes a curated, community-maintained database of social-service resources — organizations and the opportunities (programs/services) they offer, plus locations, phones, schedules, ratings, tags, comments, images, properties, guides, and housing properties. Read-focused REST over https://data.1degree.org/v1, authenticated with an api_key query parameter (HMAC-SHA256 request signatures for write verbs). Resource data is licensed CC BY-NC 4.0.
+
+## APIs
+
+- [One Degree Resource Server API](https://github.com/1deg/resource-server-api-docs): REST API for social-service organizations, opportunities, locations, and housing — base URL https://data.1degree.org/v1
+
+## Specs
+
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/one-degree/refs/heads/main/openapi/one-degree-openapi.yml): Derived OpenAPI 3.0 spec (27 operations)
+- [Postman Collection](https://raw.githubusercontent.com/api-evangelist/one-degree/refs/heads/main/postman/one-degree.postman_collection.json)
+
+## Docs
+
+- [API Documentation](https://github.com/1deg/resource-server-api-docs): Requests, request signatures, responses, and per-resource references
+- [Request Signatures](https://github.com/1deg/resource-server-api-docs/blob/main/docs/request-signatures.md): HMAC-SHA256 signing for write requests
+- [Query Parameters](https://github.com/1deg/resource-server-api-docs/blob/main/docs/common/query.md)
+- [Pagination Parameters](https://github.com/1deg/resource-server-api-docs/blob/main/docs/common/pagination.md)
+- [Get an API key](http://socialservicedata.org/api/get-key/)
+
+## Optional
+
+- [Website](https://www.1degree.org/)
+- [About / Developer Portal](https://about.1degree.org/)
+- [Blog / Latest News](https://about.1degree.org/latest-news/)
+- [Terms of Use](https://about.1degree.org/terms-of-use)
+- [Privacy Policy](https://about.1degree.org/privacy-policy)
+- [GitHub Organization](https://github.com/1deg)

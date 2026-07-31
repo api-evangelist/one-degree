@@ -1,0 +1,26 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for One Degree Resource Server API
+  version: 1.0.0
+extends: openapi/one-degree-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-20'
+    x-api-evangelist-derived-from: https://github.com/1deg/resource-server-api-docs
+    x-data-license: CC BY-NC 4.0
+    x-social-service-data-standard: http://socialservicedata.org
+- target: $.info
+  update:
+    x-write-signature:
+      headers:
+      - 1deg-Date
+      - 1deg-Signature
+      scheme: HMAC-SHA256 chain over body + timestamp
+      applies_to:
+      - POST
+      - PUT
+      - DELETE
+- target: $.components.schemas.Error
+  update:
+    x-error-envelope: custom { status, error }

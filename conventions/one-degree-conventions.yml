@@ -1,0 +1,58 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/1deg/resource-server-api-docs
+docs: https://github.com/1deg/resource-server-api-docs/blob/main/docs/requests.md
+authentication:
+  style: api-key + request-signature
+  api_key: query parameter api_key (required on every request)
+  write_signature: 1deg-Date + 1deg-Signature headers (HMAC-SHA256 chain) on POST/PUT/DELETE
+  ref: authentication/one-degree-authentication.yml
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or parameter is documented. Write verbs are authenticated with a
+    time-boxed HMAC request signature (1deg-Date within 60 seconds) rather than an idempotency key.
+pagination:
+  style: page-number
+  params:
+  - name: page
+    description: Page offset, default 1.
+  - name: per_page
+    description: Items per page, default 10.
+  - name: titles_only
+    description: Return only titles/basic info instead of full resource objects.
+  applies_to:
+  - organizations
+  - opportunities
+  - housing_properties
+  - most resource collections
+search:
+  supported_collections:
+  - organizations
+  - opportunities
+  - housing_properties
+  params:
+  - query[text] (full-text keywords; quote for exact phrase)
+  - query[tags]
+  - query[lat] / query[long] / query[distance] (geo radius in km)
+  - query[order]
+  - query[match] (any | properties | by_type)
+  - query[properties][<key>] (property key-value filters)
+  - query[attributes] (field-operator-value with and/or; operators equal_to, less_than, greater_than, between, any_of, all_of, ...)
+  - ids (comma-separated id list)
+  - related / id (related records)
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://data.1degree.org/v1
+content_negotiation:
+  default: application/json
+  alternate: append .xml to an endpoint for an XML response
+timestamps:
+  format: ISO 8601 at UTC (YYYY-MM-DDTHH:mm:ssZ)
+error_envelope:
+  shape: '{ "status": "error", "error": "<message>" }'
+  ref: errors/one-degree-problem-types.yml
+rate_limit_signaling:
+  documented: false
+data_license: CC BY-NC 4.0 (Creative Commons Attribution-NonCommercial 4.0 International)

@@ -1,0 +1,12 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/one-degree-openapi.yml
+skills:
+- file: one-degree-find-services-near-me.md
+  name: Find social services near a location
+  api: openapi/one-degree-openapi.yml
+  operations: [listOpportunities, getOpportunity, getOpportunitySchedule, getOpportunityAccessInstructions]
+- file: one-degree-explore-organization.md
+  name: Explore a provider organization and its locations
+  api: openapi/one-degree-openapi.yml
+  operations: [getOrganization, getOrganizationLocations, getLocationPhones, getLocationSchedule]

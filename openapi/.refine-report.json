@@ -1,0 +1,24 @@
+{
+  "provider": "one-degree",
+  "sources": [
+    "one-degree-housing-api-openapi.yml",
+    "one-degree-locations-api-openapi.yml",
+    "one-degree-opportunities-api-openapi.yml",
+    "one-degree-organizations-api-openapi.yml",
+    "one-degree-reference-api-openapi.yml",
+    "one-degree-submissions-api-openapi.yml"
+  ],
+  "outputs": [
+    "one-degree-housing-api-openapi.yml",
+    "one-degree-locations-api-openapi.yml",
+    "one-degree-opportunities-api-openapi.yml",
+    "one-degree-organizations-api-openapi.yml",
+    "one-degree-reference-api-openapi.yml",
+    "one-degree-submissions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/1deg/resource-server-api-docs/blob/main/docs/responses.md
+format: custom
+envelope:
+  shape: '{ "status": "error", "error": "<message>" }'
+  content_type: application/json; charset=utf-8
+  notes: >-
+    Not RFC 9457 problem+json. Errors return a top-level status field ("error") and a human-readable
+    error message string.
+problems:
+- status: 400
+  title: Bad Request
+  description: Something was wrong with the request, commonly a missing API key.
+  example_message: Missing API key.
+- status: 401
+  title: Unauthorized
+  description: The request could not be authorized, commonly an invalid API key or request signature.
+- status: 403
+  title: Forbidden
+  description: The client with the given API key does not have access to perform the requested action.
+- status: 404
+  title: Not Found
+  description: There is nothing at the endpoint requested.
+- status: 500
+  title: Internal Server Error
+  description: A problem occurred at the server while fulfilling the request.

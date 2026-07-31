@@ -1,0 +1,51 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/one-degree-openapi.yml
+notes: >-
+  Derived from the Resource Server endpoint hierarchy. Organizations are the root entity;
+  Opportunities (programs/services) belong to organizations; both carry sub-resources.
+entities:
+- name: Organization
+  id_form: slug or numeric id
+  example: compass-family-services
+  relationships:
+  - has_many: opportunities (via organization_id)
+  - has_many: locations
+  - has_many: phones
+  - has_many: ratings
+  - has_many: tags
+  - has_many: comments
+  - has_many: images
+  - has_many: properties
+- name: Opportunity
+  id_form: slug or numeric id
+  example: get-emergency-shelter-for-homeless-families
+  relationships:
+  - belongs_to: organization (via organization_id)
+  - has_one: schedule
+  - has_one: access_instructions
+  - has_many: phones
+  - has_many: emails
+  - has_many: ratings
+  - has_many: tags
+  - has_many: comments
+  - has_many: images
+  - has_many: properties
+- name: Location
+  relationships:
+  - belongs_to: organization (via organization_id)
+  - has_many: phones
+  - has_one: schedule
+- name: HousingProperty
+  relationships:
+  - has_many: units
+  - has_one: rental_office (location)
+  - has_many: images
+  - has_many: phones
+  - has_many: properties
+- name: Guide
+- name: Submission
+- name: PropertyType
+  role: reference/vocabulary for properties
+- name: RatingType
+  role: reference/vocabulary for ratings

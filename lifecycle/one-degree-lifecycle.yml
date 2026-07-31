@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/1deg/resource-server-api-docs
+versioning:
+  scheme: uri-path
+  current: v1
+  base_url: https://data.1degree.org/v1
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation policy or RFC 8594 Sunset/Deprecation header support found.
+sla:
+  url: null
+status_page: null
+deprecated_operations: []
+notes: >-
+  Single stable v1 URI-path version. No status page, SLA, or deprecation policy is published as of
+  this pass; the API is a nonprofit-maintained resource server.

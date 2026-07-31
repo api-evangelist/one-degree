@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: searched
+source: openapi/one-degree-openapi.yml
+docs: https://github.com/1deg/resource-server-api-docs/blob/main/docs/requests.md
+summary:
+  types:
+  - apiKey
+  - custom-signature
+  api_key_in:
+  - query
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: query
+  parameter: api_key
+  description: >-
+    All requests require an api_key query parameter. Request a key at
+    http://socialservicedata.org/api/get-key/
+  sources:
+  - openapi/one-degree-openapi.yml
+- name: requestSignature
+  type: custom
+  applies_to:
+  - POST
+  - PUT
+  - DELETE
+  description: >-
+    Write requests must include two additional headers: 1deg-Date (an ISO 8601 UTC timestamp,
+    accepted within a 60-second window) and 1deg-Signature (a request signature). The signature is
+    an HMAC-SHA256 chain: (1) HMAC-SHA256 hex digest of the request body keyed by the API secret
+    token; (2) HMAC-SHA256 hex digest of the 1deg-Date timestamp keyed by the step-1 digest;
+    (3) SHA-256 hex digest of the step-2 result.
+  headers:
+  - name: 1deg-Date
+    description: ISO 8601 UTC timestamp (YYYY-MM-DDTHH:mm:ssZ), no milliseconds or timezone offset.
+  - name: 1deg-Signature
+    description: Hexadecimal HMAC-SHA256 request signature authenticating the sender.
+  docs: https://github.com/1deg/resource-server-api-docs/blob/main/docs/request-signatures.md

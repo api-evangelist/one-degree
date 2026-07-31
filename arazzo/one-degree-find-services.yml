@@ -1,0 +1,54 @@
+arazzo: 1.0.1
+info:
+  title: One Degree — find and detail a nearby service
+  version: 1.0.0
+  summary: Search opportunities by location, then load the top result's details and schedule.
+sourceDescriptions:
+- name: onedegree
+  url: ../openapi/one-degree-openapi.yml
+  type: openapi
+workflows:
+- workflowId: findNearbyService
+  summary: Full-text + geo search for opportunities, then fetch details and schedule for the first match.
+  inputs:
+    type: object
+    properties:
+      api_key: { type: string }
+      text: { type: string, default: health clinic }
+      lat: { type: number, default: 32.750010 }
+      long: { type: number, default: -117.101700 }
+      distance: { type: number, default: 40 }
+  steps:
+  - stepId: searchOpportunities
+    operationId: listOpportunities
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.api_key
+    - name: query[text]
+      in: query
+      value: $inputs.text
+    - name: query[lat]
+      in: query
+      value: $inputs.lat
+    - name: query[long]
+      in: query
+      value: $inputs.long
+    - name: query[distance]
+      in: query
+      value: $inputs.distance
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      opportunity_id: $response.body#/0/id
+  - stepId: getDetails
+    operationId: getOpportunity
+    parameters:
+    - name: api_key
+      in: query
+      value: $inputs.api_key
+    - name: opportunity_id
+      in: path
+      value: $steps.searchOpportunities.outputs.opportunity_id
+    successCriteria:
+    - condition: $statusCode == 200

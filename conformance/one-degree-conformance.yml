@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/one-degree-openapi.yml
+standards:
+- id: rest
+  conforms: true
+  evidence: Resource-oriented HTTP GET collections and members over /v1.
+- id: api-key-auth
+  conforms: true
+  evidence: openapi securityScheme apiKey in query (api_key).
+- id: hmac-request-signing
+  conforms: true
+  evidence: 1deg-Signature HMAC-SHA256 chain + 1deg-Date on write verbs (docs/request-signatures.md).
+- id: pagination
+  conforms: true
+  evidence: page/per_page/titles_only pagination on resource collections.
+- id: socialservicedata.org
+  conforms: true
+  evidence: Data model aligns to the Social Service Data standard (socialservicedata.org); keys issued via that program.
+- id: oauth2
+  conforms: false
+- id: openid-connect
+  conforms: false
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: Errors use a custom { status, error } envelope, not application/problem+json.
+- id: fhir-r4
+  conforms: false
+- id: json-api
+  conforms: false

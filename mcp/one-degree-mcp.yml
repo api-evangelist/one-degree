@@ -1,0 +1,90 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/one-degree-openapi.yml
+server:
+  name: one-degree
+  transport: http
+  url: null
+tools:
+- name: listOrganizations
+  description: List and search organizations
+  source_operation: openapi/one-degree-openapi.yml#listOrganizations
+- name: getOrganization
+  description: Get an organization
+  source_operation: openapi/one-degree-openapi.yml#getOrganization
+- name: getOrganizationRatings
+  description: List organization ratings
+  source_operation: openapi/one-degree-openapi.yml#getOrganizationRatings
+- name: getOrganizationTags
+  description: List organization tags
+  source_operation: openapi/one-degree-openapi.yml#getOrganizationTags
+- name: getOrganizationComments
+  description: List organization comments
+  source_operation: openapi/one-degree-openapi.yml#getOrganizationComments
+- name: getOrganizationImages
+  description: List organization images
+  source_operation: openapi/one-degree-openapi.yml#getOrganizationImages
+- name: getOrganizationPhones
+  description: List organization phones
+  source_operation: openapi/one-degree-openapi.yml#getOrganizationPhones
+- name: getOrganizationProperties
+  description: List organization properties
+  source_operation: openapi/one-degree-openapi.yml#getOrganizationProperties
+- name: getOrganizationLocations
+  description: List organization locations
+  source_operation: openapi/one-degree-openapi.yml#getOrganizationLocations
+- name: getLocationPhones
+  description: List location phones
+  source_operation: openapi/one-degree-openapi.yml#getLocationPhones
+- name: getLocationSchedule
+  description: Get location schedule
+  source_operation: openapi/one-degree-openapi.yml#getLocationSchedule
+- name: listOpportunities
+  description: List and search opportunities
+  source_operation: openapi/one-degree-openapi.yml#listOpportunities
+- name: getOpportunity
+  description: Get an opportunity
+  source_operation: openapi/one-degree-openapi.yml#getOpportunity
+- name: getOpportunityAccessInstructions
+  description: Get opportunity access instructions
+  source_operation: openapi/one-degree-openapi.yml#getOpportunityAccessInstructions
+- name: getOpportunityComments
+  description: List opportunity comments
+  source_operation: openapi/one-degree-openapi.yml#getOpportunityComments
+- name: getOpportunityEmails
+  description: List opportunity emails
+  source_operation: openapi/one-degree-openapi.yml#getOpportunityEmails
+- name: getOpportunityImages
+  description: List opportunity images
+  source_operation: openapi/one-degree-openapi.yml#getOpportunityImages
+- name: getOpportunityPhones
+  description: List opportunity phones
+  source_operation: openapi/one-degree-openapi.yml#getOpportunityPhones
+- name: getOpportunityProperties
+  description: List opportunity properties
+  source_operation: openapi/one-degree-openapi.yml#getOpportunityProperties
+- name: getOpportunityRatings
+  description: List opportunity ratings
+  source_operation: openapi/one-degree-openapi.yml#getOpportunityRatings
+- name: getOpportunitySchedule
+  description: Get opportunity schedule
+  source_operation: openapi/one-degree-openapi.yml#getOpportunitySchedule
+- name: getOpportunityTags
+  description: List opportunity tags
+  source_operation: openapi/one-degree-openapi.yml#getOpportunityTags
+- name: listPropertyTypes
+  description: List property types
+  source_operation: openapi/one-degree-openapi.yml#listPropertyTypes
+- name: listRatingTypes
+  description: List rating types
+  source_operation: openapi/one-degree-openapi.yml#listRatingTypes
+- name: listGuides
+  description: List guides
+  source_operation: openapi/one-degree-openapi.yml#listGuides
+- name: listSubmissions
+  description: List submissions
+  source_operation: openapi/one-degree-openapi.yml#listSubmissions
+- name: listHousingProperties
+  description: List and search housing properties
+  source_operation: openapi/one-degree-openapi.yml#listHousingProperties
