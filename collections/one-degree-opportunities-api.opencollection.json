@@ -1,0 +1,475 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "One Degree Resource Server Housing Opportunities API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Opportunities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List and search opportunities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/opportunities",
+            "params": [
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              },
+              {
+                "name": "ids",
+                "value": "3,49,2",
+                "type": "query",
+                "description": "Comma-separated set of IDs whose records will be returned."
+              },
+              {
+                "name": "query[text]",
+                "value": "health clinic",
+                "type": "query",
+                "description": "Full-text search keywords. Surround in quotes for exact phrase."
+              },
+              {
+                "name": "query[tags]",
+                "value": "Childcare",
+                "type": "query",
+                "description": "Classification tags associated with opportunities."
+              },
+              {
+                "name": "query[lat]",
+                "value": "37.7823",
+                "type": "query",
+                "description": "Latitude around which to search."
+              },
+              {
+                "name": "query[long]",
+                "value": "-122.46",
+                "type": "query",
+                "description": "Longitude around which to search."
+              },
+              {
+                "name": "query[distance]",
+                "value": "40.2336",
+                "type": "query",
+                "description": "Radius in kilometers around the coordinates to search within."
+              },
+              {
+                "name": "query[order]",
+                "value": "",
+                "type": "query",
+                "description": "Ordering of results (default scored by best match, distance and other factors)."
+              },
+              {
+                "name": "query[match]",
+                "value": "by_type",
+                "type": "query",
+                "description": "Match logic: any, properties, or by_type."
+              }
+            ]
+          },
+          "docs": "Returns a collection of opportunities (services/programs). Supports full-text, geo, tag, and property search."
+        },
+        {
+          "info": {
+            "name": "Get an opportunity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/opportunities/:opportunity_id",
+            "params": [
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              }
+            ]
+          },
+          "docs": "Get an opportunity"
+        },
+        {
+          "info": {
+            "name": "Get opportunity access instructions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/opportunities/:opportunity_id/access_instructions",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              }
+            ]
+          },
+          "docs": "Get opportunity access instructions"
+        },
+        {
+          "info": {
+            "name": "List opportunity comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/opportunities/:opportunity_id/comments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List opportunity comments"
+        },
+        {
+          "info": {
+            "name": "List opportunity emails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/opportunities/:opportunity_id/emails",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List opportunity emails"
+        },
+        {
+          "info": {
+            "name": "List opportunity images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/opportunities/:opportunity_id/images",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List opportunity images"
+        },
+        {
+          "info": {
+            "name": "List opportunity phones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/opportunities/:opportunity_id/phones",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List opportunity phones"
+        },
+        {
+          "info": {
+            "name": "List opportunity properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/opportunities/:opportunity_id/properties",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List opportunity properties"
+        },
+        {
+          "info": {
+            "name": "List opportunity ratings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/opportunities/:opportunity_id/ratings",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List opportunity ratings"
+        },
+        {
+          "info": {
+            "name": "Get opportunity schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/opportunities/:opportunity_id/schedule",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              }
+            ]
+          },
+          "docs": "Get opportunity schedule"
+        },
+        {
+          "info": {
+            "name": "List opportunity tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/opportunities/:opportunity_id/tags",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "opportunity_id",
+                "value": "get-emergency-shelter-for-homeless-families",
+                "type": "path",
+                "description": "The opportunity identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List opportunity tags"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

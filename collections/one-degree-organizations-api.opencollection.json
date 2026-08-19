@@ -1,0 +1,346 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "One Degree Resource Server Housing Organizations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organizations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List and search organizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations",
+            "params": [
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              },
+              {
+                "name": "ids",
+                "value": "3,49,2",
+                "type": "query",
+                "description": "Comma-separated set of IDs whose records will be returned."
+              },
+              {
+                "name": "query[text]",
+                "value": "health clinic",
+                "type": "query",
+                "description": "Full-text search keywords. Surround in quotes for exact phrase."
+              },
+              {
+                "name": "query[tags]",
+                "value": "Childcare",
+                "type": "query",
+                "description": "Classification tags associated with opportunities."
+              },
+              {
+                "name": "query[lat]",
+                "value": "37.7823",
+                "type": "query",
+                "description": "Latitude around which to search."
+              },
+              {
+                "name": "query[long]",
+                "value": "-122.46",
+                "type": "query",
+                "description": "Longitude around which to search."
+              },
+              {
+                "name": "query[distance]",
+                "value": "40.2336",
+                "type": "query",
+                "description": "Radius in kilometers around the coordinates to search within."
+              },
+              {
+                "name": "query[order]",
+                "value": "",
+                "type": "query",
+                "description": "Ordering of results (default scored by best match, distance and other factors)."
+              },
+              {
+                "name": "query[match]",
+                "value": "by_type",
+                "type": "query",
+                "description": "Match logic: any, properties, or by_type."
+              }
+            ]
+          },
+          "docs": "Returns a collection of organizations. Supports pagination and query parameters."
+        },
+        {
+          "info": {
+            "name": "Get an organization",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              }
+            ]
+          },
+          "docs": "Get an organization"
+        },
+        {
+          "info": {
+            "name": "List organization ratings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/ratings",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List organization ratings"
+        },
+        {
+          "info": {
+            "name": "List organization tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/tags",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List organization tags"
+        },
+        {
+          "info": {
+            "name": "List organization comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/comments",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List organization comments"
+        },
+        {
+          "info": {
+            "name": "List organization images",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/images",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List organization images"
+        },
+        {
+          "info": {
+            "name": "List organization phones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/phones",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List organization phones"
+        },
+        {
+          "info": {
+            "name": "List organization properties",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/properties",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List organization properties"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

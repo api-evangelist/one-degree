@@ -88,3 +88,9 @@ tools:
 - name: listHousingProperties
   description: List and search housing properties
   source_operation: openapi/one-degree-openapi.yml#listHousingProperties
+deployment:
+  mode: none
+  verified: derived
+  tools: 27
+  checked: '2026-08-12'
+  source: catalog MCP census

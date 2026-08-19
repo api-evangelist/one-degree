@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "One Degree Resource Server Housing Locations API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "api_key",
+      "value": "{{api_key}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List organization locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/locations",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List organization locations"
+        },
+        {
+          "info": {
+            "name": "List location phones",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/locations/:location_id/phones",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "location_id",
+                "value": "678",
+                "type": "path",
+                "description": "The location identifier."
+              },
+              {
+                "name": "page",
+                "value": "3",
+                "type": "query",
+                "description": "The page offset. Default is 1."
+              },
+              {
+                "name": "per_page",
+                "value": "10",
+                "type": "query",
+                "description": "Number of items to return. Default is 10."
+              },
+              {
+                "name": "titles_only",
+                "value": "true",
+                "type": "query",
+                "description": "Return only titles/basic info instead of full resource objects."
+              }
+            ]
+          },
+          "docs": "List location phones"
+        },
+        {
+          "info": {
+            "name": "Get location schedule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://data.1degree.org/v1/organizations/:organization_id/locations/:location_id/schedule",
+            "params": [
+              {
+                "name": "organization_id",
+                "value": "compass-family-services",
+                "type": "path",
+                "description": "The organization identifier (slug or numeric id)."
+              },
+              {
+                "name": "location_id",
+                "value": "678",
+                "type": "path",
+                "description": "The location identifier."
+              }
+            ]
+          },
+          "docs": "Get location schedule"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

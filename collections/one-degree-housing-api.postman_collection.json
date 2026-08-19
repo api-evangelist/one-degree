@@ -1,0 +1,652 @@
+{
+  "item": [
+    {
+      "id": "784d58d9-c035-42ee-bdc5-0138aae1eab8",
+      "name": "Housing",
+      "description": {
+        "content": "Housing properties.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79580053-794c-4f2c-8691-e746223545a6",
+          "name": "List and search housing properties",
+          "request": {
+            "name": "List and search housing properties",
+            "description": {},
+            "url": {
+              "path": [
+                "housing_properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The page offset. Default is 1."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>",
+                  "description": "Number of items to return. Default is 10."
+                },
+                {
+                  "disabled": false,
+                  "key": "titles_only",
+                  "value": "<boolean>",
+                  "description": "Return only titles/basic info instead of full resource objects."
+                },
+                {
+                  "disabled": false,
+                  "key": "ids",
+                  "value": "<string>",
+                  "description": "Comma-separated set of IDs whose records will be returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "query[text]",
+                  "value": "<string>",
+                  "description": "Full-text search keywords. Surround in quotes for exact phrase."
+                },
+                {
+                  "disabled": false,
+                  "key": "query[tags]",
+                  "value": "<string>",
+                  "description": "Classification tags associated with opportunities."
+                },
+                {
+                  "disabled": false,
+                  "key": "query[lat]",
+                  "value": "<number>",
+                  "description": "Latitude around which to search."
+                },
+                {
+                  "disabled": false,
+                  "key": "query[long]",
+                  "value": "<number>",
+                  "description": "Longitude around which to search."
+                },
+                {
+                  "disabled": false,
+                  "key": "query[distance]",
+                  "value": "<number>",
+                  "description": "Radius in kilometers around the coordinates to search within."
+                },
+                {
+                  "disabled": false,
+                  "key": "query[order]",
+                  "value": "<string>",
+                  "description": "Ordering of results (default scored by best match, distance and other factors)."
+                },
+                {
+                  "disabled": false,
+                  "key": "query[match]",
+                  "value": "<string>",
+                  "description": "Match logic: any, properties, or by_type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99f52054-c397-4a45-8f80-181413e2dcaa",
+              "name": "Successful response (JSON by default; append .xml for XML)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "housing_properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "titles_only",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "3,49,2"
+                    },
+                    {
+                      "key": "query[text]",
+                      "value": "health clinic"
+                    },
+                    {
+                      "key": "query[tags]",
+                      "value": "Childcare"
+                    },
+                    {
+                      "key": "query[lat]",
+                      "value": "37.7823"
+                    },
+                    {
+                      "key": "query[long]",
+                      "value": "-122.46"
+                    },
+                    {
+                      "key": "query[distance]",
+                      "value": "40.2336"
+                    },
+                    {
+                      "key": "query[order]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query[match]",
+                      "value": "by_type"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10ec511b-2b20-464e-b13b-8c8a39771072",
+              "name": "Bad Request — something was wrong with the request, often a missing API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "housing_properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "titles_only",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "3,49,2"
+                    },
+                    {
+                      "key": "query[text]",
+                      "value": "health clinic"
+                    },
+                    {
+                      "key": "query[tags]",
+                      "value": "Childcare"
+                    },
+                    {
+                      "key": "query[lat]",
+                      "value": "37.7823"
+                    },
+                    {
+                      "key": "query[long]",
+                      "value": "-122.46"
+                    },
+                    {
+                      "key": "query[distance]",
+                      "value": "40.2336"
+                    },
+                    {
+                      "key": "query[order]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query[match]",
+                      "value": "by_type"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": \"Missing API key.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d034e9c-1274-4d89-839e-bfd98513d09c",
+              "name": "Unauthorized — invalid API key or request signature.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "housing_properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "titles_only",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "3,49,2"
+                    },
+                    {
+                      "key": "query[text]",
+                      "value": "health clinic"
+                    },
+                    {
+                      "key": "query[tags]",
+                      "value": "Childcare"
+                    },
+                    {
+                      "key": "query[lat]",
+                      "value": "37.7823"
+                    },
+                    {
+                      "key": "query[long]",
+                      "value": "-122.46"
+                    },
+                    {
+                      "key": "query[distance]",
+                      "value": "40.2336"
+                    },
+                    {
+                      "key": "query[order]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query[match]",
+                      "value": "by_type"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": \"Invalid API key or signature.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88b7f271-647e-4967-a4dd-b42bee96681c",
+              "name": "Forbidden — the client is not allowed to perform the requested action.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "housing_properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "titles_only",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "3,49,2"
+                    },
+                    {
+                      "key": "query[text]",
+                      "value": "health clinic"
+                    },
+                    {
+                      "key": "query[tags]",
+                      "value": "Childcare"
+                    },
+                    {
+                      "key": "query[lat]",
+                      "value": "37.7823"
+                    },
+                    {
+                      "key": "query[long]",
+                      "value": "-122.46"
+                    },
+                    {
+                      "key": "query[distance]",
+                      "value": "40.2336"
+                    },
+                    {
+                      "key": "query[order]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query[match]",
+                      "value": "by_type"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": \"Forbidden.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ff6b3ac-b621-4e05-92d3-6a5634f2ab13",
+              "name": "Not Found — nothing at the requested endpoint.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "housing_properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "titles_only",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "3,49,2"
+                    },
+                    {
+                      "key": "query[text]",
+                      "value": "health clinic"
+                    },
+                    {
+                      "key": "query[tags]",
+                      "value": "Childcare"
+                    },
+                    {
+                      "key": "query[lat]",
+                      "value": "37.7823"
+                    },
+                    {
+                      "key": "query[long]",
+                      "value": "-122.46"
+                    },
+                    {
+                      "key": "query[distance]",
+                      "value": "40.2336"
+                    },
+                    {
+                      "key": "query[order]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query[match]",
+                      "value": "by_type"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": \"Not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52fcda68-5a9c-4d30-b387-8ebdcf3f9b98",
+              "name": "Internal Server Error — a problem occurred at the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "housing_properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "3"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "titles_only",
+                      "value": "true"
+                    },
+                    {
+                      "key": "ids",
+                      "value": "3,49,2"
+                    },
+                    {
+                      "key": "query[text]",
+                      "value": "health clinic"
+                    },
+                    {
+                      "key": "query[tags]",
+                      "value": "Childcare"
+                    },
+                    {
+                      "key": "query[lat]",
+                      "value": "37.7823"
+                    },
+                    {
+                      "key": "query[long]",
+                      "value": "-122.46"
+                    },
+                    {
+                      "key": "query[distance]",
+                      "value": "40.2336"
+                    },
+                    {
+                      "key": "query[order]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query[match]",
+                      "value": "by_type"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"error\": \"Internal server error.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://data.1degree.org/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "api_key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0092ff52-da1c-4e88-84a0-0defbeb07eb6",
+    "name": "One Degree Resource Server Housing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The One Degree Resource Server API provides read access to a curated database of social-service community resources — organizations and the opportunities (programs/services) they offer, along with locations, phones, schedules, ratings, tags, comments, images, properties, guides, and housing properties. One Degree is a California 501(c)(3) nonprofit; the API supports interoperability with third-party services to improve coordination and delivery of social services. Data is licensed CC BY-NC 4.0. All requests require an api_key query parameter; write verbs (POST/PUT/DELETE) additionally require HMAC-SHA256 request signatures via the 1deg-Date and 1deg-Signature headers.\n\nContact Support:\n Name: One Degree",
+      "type": "text/plain"
+    }
+  }
+}
