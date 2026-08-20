@@ -36,6 +36,16 @@ created: '2026-07-17'
 modified: '2026-07-20'
 tags:
 - Company
+- Non-Profit
+- Social Services
+- Community Resources
+- Human Services
+- Public Benefit
+- Housing
+- Open Data
+- Civic Tech
+tags_raw:
+- Company
 - Nonprofit
 - Social Services
 - Community Resources
@@ -130,6 +140,8 @@ apis:
   humanURL: https://github.com/1deg/resource-server-api-docs
   baseURL: https://data.1degree.org/v1
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
