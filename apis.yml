@@ -101,6 +101,8 @@ apis:
   humanURL: https://github.com/1deg/resource-server-api-docs
   baseURL: https://data.1degree.org/v1
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
