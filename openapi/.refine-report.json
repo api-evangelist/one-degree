@@ -1,12 +1,7 @@
 {
   "provider": "one-degree",
   "sources": [
-    "one-degree-housing-api-openapi.yml",
-    "one-degree-locations-api-openapi.yml",
-    "one-degree-opportunities-api-openapi.yml",
-    "one-degree-organizations-api-openapi.yml",
-    "one-degree-reference-api-openapi.yml",
-    "one-degree-submissions-api-openapi.yml"
+    "_original/one-degree-openapi.yml"
   ],
   "outputs": [
     "one-degree-housing-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "one-degree-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "one-degree-housing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "one-degree-locations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "one-degree-opportunities-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "one-degree-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "one-degree-reference-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "one-degree-submissions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

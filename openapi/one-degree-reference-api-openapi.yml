@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: One Degree Resource Server Housing Reference API
-  description: The One Degree Resource Server API provides read access to a curated database of social-service community resources — organizations and the opportunities (programs/services) they offer, along with locations, phones, schedules, ratings, tags, comments, images, properties, guides, and housing properties. One Degree is a California 501(c)(3) nonprofit; the API supports interoperability with third-party services to improve coordination and delivery of social services. Data is licensed CC BY-NC 4.0. All requests require an api_key query parameter; write verbs (POST/PUT/DELETE) additionally require HMAC-SHA256 request signatures via the 1deg-Date and 1deg-Signature headers.
+  title: One Degree Resource Server Reference API
+  description: The One Degree Resource Server API provides read access to a curated database of social-service community resources — organizations and the opportunities (programs/services) they offer, along with locations, phones, schedules, ratings, tags, comments, images, properties, guides, and housing properties.
   version: 1.0.0
   contact:
     name: One Degree
@@ -101,16 +101,32 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
+  parameters:
+    titles_only:
+      name: titles_only
+      in: query
+      required: false
+      description: Return only titles/basic info instead of full resource objects.
+      schema:
+        type: boolean
+      example: true
+    page:
+      name: page
+      in: query
+      required: false
+      description: The page offset. Default is 1.
+      schema:
+        type: integer
+      example: 3
+    per_page:
+      name: per_page
+      in: query
+      required: false
+      description: Number of items to return. Default is 10.
+      schema:
+        type: integer
+      example: 10
   responses:
-    ServerError:
-      description: Internal Server Error — a problem occurred at the server.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Internal server error.
     Forbidden:
       description: Forbidden — the client is not allowed to perform the requested action.
       content:
@@ -120,15 +136,6 @@ components:
           example:
             status: error
             error: Forbidden.
-    Unauthorized:
-      description: Unauthorized — invalid API key or request signature.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Invalid API key or signature.
     BadRequest:
       description: Bad Request — something was wrong with the request, often a missing API key.
       content:
@@ -138,6 +145,24 @@ components:
           example:
             status: error
             error: Missing API key.
+    Unauthorized:
+      description: Unauthorized — invalid API key or request signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Invalid API key or signature.
+    ServerError:
+      description: Internal Server Error — a problem occurred at the server.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Internal server error.
     NotFound:
       description: Not Found — nothing at the requested endpoint.
       content:
@@ -157,31 +182,6 @@ components:
         error:
           type: string
           example: Missing API key.
-  parameters:
-    per_page:
-      name: per_page
-      in: query
-      required: false
-      description: Number of items to return. Default is 10.
-      schema:
-        type: integer
-      example: 10
-    page:
-      name: page
-      in: query
-      required: false
-      description: The page offset. Default is 1.
-      schema:
-        type: integer
-      example: 3
-    titles_only:
-      name: titles_only
-      in: query
-      required: false
-      description: Return only titles/basic info instead of full resource objects.
-      schema:
-        type: boolean
-      example: true
   securitySchemes:
     apiKeyAuth:
       type: apiKey
