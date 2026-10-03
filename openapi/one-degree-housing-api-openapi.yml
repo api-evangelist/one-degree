@@ -55,93 +55,7 @@ paths:
         '500':
           $ref: '#/components/responses/ServerError'
 components:
-  responses:
-    Unauthorized:
-      description: Unauthorized — invalid API key or request signature.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Invalid API key or signature.
-    BadRequest:
-      description: Bad Request — something was wrong with the request, often a missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Missing API key.
-    NotFound:
-      description: Not Found — nothing at the requested endpoint.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Not found.
-    ServerError:
-      description: Internal Server Error — a problem occurred at the server.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Internal server error.
-    Forbidden:
-      description: Forbidden — the client is not allowed to perform the requested action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Forbidden.
   parameters:
-    query_tags:
-      name: query[tags]
-      in: query
-      required: false
-      description: Classification tags associated with opportunities.
-      schema:
-        type: string
-      example: Childcare
-    page:
-      name: page
-      in: query
-      required: false
-      description: The page offset. Default is 1.
-      schema:
-        type: integer
-      example: 3
-    query_long:
-      name: query[long]
-      in: query
-      required: false
-      description: Longitude around which to search.
-      schema:
-        type: number
-      example: -122.46
-    per_page:
-      name: per_page
-      in: query
-      required: false
-      description: Number of items to return. Default is 10.
-      schema:
-        type: integer
-      example: 10
-    query_match:
-      name: query[match]
-      in: query
-      required: false
-      description: 'Match logic: any, properties, or by_type.'
-      schema:
-        type: string
-      example: by_type
     query_order:
       name: query[order]
       in: query
@@ -157,14 +71,14 @@ components:
       schema:
         type: boolean
       example: true
-    query_distance:
-      name: query[distance]
+    per_page:
+      name: per_page
       in: query
       required: false
-      description: Radius in kilometers around the coordinates to search within.
+      description: Number of items to return. Default is 10.
       schema:
-        type: number
-      example: 40.2336
+        type: integer
+      example: 10
     ids:
       name: ids
       in: query
@@ -181,6 +95,14 @@ components:
       schema:
         type: number
       example: 37.7823
+    page:
+      name: page
+      in: query
+      required: false
+      description: The page offset. Default is 1.
+      schema:
+        type: integer
+      example: 3
     query_text:
       name: query[text]
       in: query
@@ -189,6 +111,84 @@ components:
       schema:
         type: string
       example: health clinic
+    query_tags:
+      name: query[tags]
+      in: query
+      required: false
+      description: Classification tags associated with opportunities.
+      schema:
+        type: string
+      example: Childcare
+    query_distance:
+      name: query[distance]
+      in: query
+      required: false
+      description: Radius in kilometers around the coordinates to search within.
+      schema:
+        type: number
+      example: 40.2336
+    query_match:
+      name: query[match]
+      in: query
+      required: false
+      description: 'Match logic: any, properties, or by_type.'
+      schema:
+        type: string
+      example: by_type
+    query_long:
+      name: query[long]
+      in: query
+      required: false
+      description: Longitude around which to search.
+      schema:
+        type: number
+      example: -122.46
+  responses:
+    BadRequest:
+      description: Bad Request — something was wrong with the request, often a missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Missing API key.
+    ServerError:
+      description: Internal Server Error — a problem occurred at the server.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Internal server error.
+    Unauthorized:
+      description: Unauthorized — invalid API key or request signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Invalid API key or signature.
+    NotFound:
+      description: Not Found — nothing at the requested endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Not found.
+    Forbidden:
+      description: Forbidden — the client is not allowed to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Forbidden.
   schemas:
     Error:
       type: object
