@@ -134,14 +134,6 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   parameters:
-    titles_only:
-      name: titles_only
-      in: query
-      required: false
-      description: Return only titles/basic info instead of full resource objects.
-      schema:
-        type: boolean
-      example: true
     per_page:
       name: per_page
       in: query
@@ -158,52 +150,14 @@ components:
       schema:
         type: integer
       example: 3
-  responses:
-    BadRequest:
-      description: Bad Request — something was wrong with the request, often a missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Missing API key.
-    ServerError:
-      description: Internal Server Error — a problem occurred at the server.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Internal server error.
-    Unauthorized:
-      description: Unauthorized — invalid API key or request signature.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Invalid API key or signature.
-    NotFound:
-      description: Not Found — nothing at the requested endpoint.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Not found.
-    Forbidden:
-      description: Forbidden — the client is not allowed to perform the requested action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Forbidden.
+    titles_only:
+      name: titles_only
+      in: query
+      required: false
+      description: Return only titles/basic info instead of full resource objects.
+      schema:
+        type: boolean
+      example: true
   schemas:
     Error:
       type: object
@@ -214,6 +168,52 @@ components:
         error:
           type: string
           example: Missing API key.
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid API key or request signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Invalid API key or signature.
+    ServerError:
+      description: Internal Server Error — a problem occurred at the server.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Internal server error.
+    Forbidden:
+      description: Forbidden — the client is not allowed to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Forbidden.
+    BadRequest:
+      description: Bad Request — something was wrong with the request, often a missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Missing API key.
+    NotFound:
+      description: Not Found — nothing at the requested endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Not found.
   securitySchemes:
     apiKeyAuth:
       type: apiKey

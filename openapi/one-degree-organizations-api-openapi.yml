@@ -292,21 +292,6 @@ paths:
           $ref: '#/components/responses/ServerError'
 components:
   parameters:
-    query_order:
-      name: query[order]
-      in: query
-      required: false
-      description: Ordering of results (default scored by best match, distance and other factors).
-      schema:
-        type: string
-    titles_only:
-      name: titles_only
-      in: query
-      required: false
-      description: Return only titles/basic info instead of full resource objects.
-      schema:
-        type: boolean
-      example: true
     per_page:
       name: per_page
       in: query
@@ -315,30 +300,6 @@ components:
       schema:
         type: integer
       example: 10
-    ids:
-      name: ids
-      in: query
-      required: false
-      description: Comma-separated set of IDs whose records will be returned.
-      schema:
-        type: string
-      example: 3,49,2
-    query_lat:
-      name: query[lat]
-      in: query
-      required: false
-      description: Latitude around which to search.
-      schema:
-        type: number
-      example: 37.7823
-    page:
-      name: page
-      in: query
-      required: false
-      description: The page offset. Default is 1.
-      schema:
-        type: integer
-      example: 3
     query_text:
       name: query[text]
       in: query
@@ -347,22 +308,22 @@ components:
       schema:
         type: string
       example: health clinic
-    query_tags:
-      name: query[tags]
+    page:
+      name: page
       in: query
       required: false
-      description: Classification tags associated with opportunities.
+      description: The page offset. Default is 1.
+      schema:
+        type: integer
+      example: 3
+    ids:
+      name: ids
+      in: query
+      required: false
+      description: Comma-separated set of IDs whose records will be returned.
       schema:
         type: string
-      example: Childcare
-    query_distance:
-      name: query[distance]
-      in: query
-      required: false
-      description: Radius in kilometers around the coordinates to search within.
-      schema:
-        type: number
-      example: 40.2336
+      example: 3,49,2
     query_match:
       name: query[match]
       in: query
@@ -371,6 +332,29 @@ components:
       schema:
         type: string
       example: by_type
+    query_order:
+      name: query[order]
+      in: query
+      required: false
+      description: Ordering of results (default scored by best match, distance and other factors).
+      schema:
+        type: string
+    query_lat:
+      name: query[lat]
+      in: query
+      required: false
+      description: Latitude around which to search.
+      schema:
+        type: number
+      example: 37.7823
+    query_distance:
+      name: query[distance]
+      in: query
+      required: false
+      description: Radius in kilometers around the coordinates to search within.
+      schema:
+        type: number
+      example: 40.2336
     query_long:
       name: query[long]
       in: query
@@ -379,52 +363,22 @@ components:
       schema:
         type: number
       example: -122.46
-  responses:
-    BadRequest:
-      description: Bad Request — something was wrong with the request, often a missing API key.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Missing API key.
-    ServerError:
-      description: Internal Server Error — a problem occurred at the server.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Internal server error.
-    Unauthorized:
-      description: Unauthorized — invalid API key or request signature.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Invalid API key or signature.
-    NotFound:
-      description: Not Found — nothing at the requested endpoint.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Not found.
-    Forbidden:
-      description: Forbidden — the client is not allowed to perform the requested action.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            status: error
-            error: Forbidden.
+    query_tags:
+      name: query[tags]
+      in: query
+      required: false
+      description: Classification tags associated with opportunities.
+      schema:
+        type: string
+      example: Childcare
+    titles_only:
+      name: titles_only
+      in: query
+      required: false
+      description: Return only titles/basic info instead of full resource objects.
+      schema:
+        type: boolean
+      example: true
   schemas:
     Error:
       type: object
@@ -435,6 +389,52 @@ components:
         error:
           type: string
           example: Missing API key.
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid API key or request signature.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Invalid API key or signature.
+    ServerError:
+      description: Internal Server Error — a problem occurred at the server.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Internal server error.
+    Forbidden:
+      description: Forbidden — the client is not allowed to perform the requested action.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Forbidden.
+    BadRequest:
+      description: Bad Request — something was wrong with the request, often a missing API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Missing API key.
+    NotFound:
+      description: Not Found — nothing at the requested endpoint.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            status: error
+            error: Not found.
   securitySchemes:
     apiKeyAuth:
       type: apiKey
